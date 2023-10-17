@@ -2,25 +2,34 @@
 export default {
   data: () => {
     return {
-      inputText: "",
-      formattedText: "",
+      name: '',
+      age: []
     };
-  },
-  methods: {
-    formatText() {
-      this.formattedText = this.inputText;
-    },
   },
 };
 </script>
 
 <template>
-  <div>
-    <p>
-      <b><i>{{ formattedText }}</i></b>
-    </p>
-  </div>
-  <textarea v-model="inputText" @input="formatText"></textarea>
+  <form>
+      <label for="name">Имя: </label>
+      <input type="text" id="name" v-model="name">
+      <br>
+      <label for="age">Возраст: </label>
+      <input type="number" id="age" v-model="age">
+    </form>
+
+    <div v-if="age < 0">
+      <p>Это как</p>
+    </div>
+    <div v-else-if="age < 18">
+      <p>Привет, {{ name }} пока туда сюда двигаемся молодые</p>
+    </div>
+    <div v-else-if="age <= 100">
+      <p>Привет, {{ name }} вы взрослый</p>
+    </div>
+    <div v-else>
+      <p>Агай вам хорошо??</p>
+    </div>
 </template>
   
 <style scoped>
