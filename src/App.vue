@@ -2,44 +2,35 @@
 export default {
   data: () => {
     return {
-      product1: {
-        src: "/src/assets/img1.jpg",
-        alt: "Изображение товара 1",
-        title: "Товар 1",
-        description: "Описание товара 1",
-        price: "100 тенге",
-      },
-      product2: {
-        src: "/src/assets/img2.jpg",
-        alt: "Изображение товара 2",
-        title: "Товар 2",
-        description: "Описание товара 2",
-        price: "150 тенге",
-      },
+      colors: [
+        { name: "Красный", code: "#FF0000" },
+        { name: "Зеленый", code: "#00FF00" },
+        { name: "Синий", code: "#0000FF" },
+        { name: "Желтый", code: "#FFFF00" },
+        { name: "Фиолетовый", code: "#800080" },
+        { name: "Оранжевый", code: "#FFA500" },
+        { name: "Розовый", code: "#FFC0CB" },
+      ],
     };
   },
 };
 </script>
 
 <template>
-  <div class="product-card">
-    <img class="product-img" :src="product1.src" :alt="product1.alt" />
-    <h2>{{ product1.title }}</h2>
-    <p>{{ product1.description }}</p>
-    <p>Цена: {{ product1.price }}</p>
-  </div>
-
-  <div class="product-card">
-    <img class="product-img" :src="product2.src" :alt="product2.alt" />
-    <h2>{{ product2.title }}</h2>
-    <p>{{ product2.description }}</p>
-    <p>Цена: {{ product2.price }}</p>
+  <div class="color-card" v-for="(color, index) in colors" :key="index">
+    <div class="color-box" :style="{backgroundColor: color.code }"></div>
+    <p>{{ color.name }}</p>
+    <p>{{ color.code }}</p>
   </div>
 </template>
-
+  
 <style scoped>
-.product-img {
-  width: 300px;
-  height: 300px;
+.color-card {
+  display: inline-block;
+  width: 150px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ccc;
 }
 </style>
